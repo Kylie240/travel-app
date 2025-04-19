@@ -1,0 +1,44 @@
+<div>
+    <div style="width: 100%; height: 800px;" class="flex">
+        <div class="col-8 flex flex-column gap-3" style="height: 100%;">
+            <img class="border-round-3xl" style="width: 100%; height: 650px; object-fit: cover;" src="https://static.vecteezy.com/system/resources/previews/048/139/676/large_2x/a-mountain-peak-shown-in-the-distance-with-a-nature-background-free-photo.jpg" alt="">
+            <div class="bg-white shadow-2 border-round-2xl flex" style="width: 100%; height: 100px;">
+                <div class="col-3">
+                    <div class="flex flex-column">
+                        <div class="flex align-content-center">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <p>Destination</p>
+                        </div>
+                        <p-autocomplete [(ngModel)]="searchDestination" [suggestions]="items" (completeMethod)="searchDestinations($event)" />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flex flex-column">
+                        <div class="flex align-content-center">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <p>Price Range</p>
+                        </div>
+                        <p-autocomplete [(ngModel)]="searchDestination" [suggestions]="items" (completeMethod)="searchDestinations($event)" />
+                    </div>
+                </div>
+                <p-button label="Search" class="col-3"/>
+            </div>
+        </div>
+        <div class="flex flex-column col-4 gap-3">
+            <div style="width: 100%; height: 42%;">
+                <img class="border-round-3xl" style="width: 100%; height: 100%; object-fit: cover;" src="https://www.tripsavvy.com/thmb/e9MKTSQO9CrUAAD4nSVvg5lLDLY=/5616x3743/filters:no_upscale():max_bytes(150000):strip_icc()/navagio-bay--zakynthos--greece---shipwreck-beach-1061326158-58458295528941059a81d843388f56d2.jpg" alt="">
+            </div>
+            <div style="height: 42%;" class="p-4 bg-black-alpha-90 border-round-2xl flex flex-column justify-content-between" >
+                <i class="fa-solid fa-plane text-white"></i>
+                <p class="m-0 text-white text-xl line-height-3" style="bottom: 0px;">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                    quisquam repellat
+                </p>
+            </div>
+            <div style="width: 100%; height: 16%;">
+                <img class="border-round-3xl" style="width: 100%; height: 100%; object-fit: cover;" src="https://images.pexels.com/photos/2104152/pexels-photo-2104152.jpeg?cs=srgb&dl=clouds-cold-dawn-2104152.jpg&fm=jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
