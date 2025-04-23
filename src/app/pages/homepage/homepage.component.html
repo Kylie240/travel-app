@@ -1,11 +1,6 @@
 <app-hero></app-hero>
-<div class="w-full flex justify-content-center">
-    <p class="text-8xl font-bold text-gray-300 relative">TRAVEL MORE
-        <span class="absolute text-blue-400 text-sm">WORRY LESS</span>
-    </p>
-</div>
 
-<div class="w-full flex justify-content-center align-content-center gap-4">
+<div class="w-full flex justify-content-center align-content-center gap-4 py-8">
     <div class="col-6 w-4">
         <img class="border-round-3xl" style="width: 100%; height: 100%; object-fit: cover;" src="https://static.vecteezy.com/system/resources/previews/048/139/676/large_2x/a-mountain-peak-shown-in-the-distance-with-a-nature-background-free-photo.jpg" alt="">
     </div>
@@ -32,7 +27,7 @@
     </div>
 </div>
 
-<div class="w-full flex flex-column justify-content-center text-center align-content-center mt-8">
+<div class="w-full flex flex-column justify-content-center text-center align-content-center mt-8 py-8">
     <div class="w-full flex flex-column justify-content-center">
         <p class="text-blue-400 text-sm">EXPLORE OUR</p>
         <p class="text-8xl font-bold text-black m-0">{{featuredList.listName | uppercase}} LISTINGS</p>
@@ -42,15 +37,25 @@
             <p-button (onClick)="toggleFeaturedList($index)" label="{{item.listName}}" severity="secondary" />
             }
     </div>
-    <p-carousel class="mx-8" [value]="featuredList.data" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions">
-        <ng-template let-test #item>
-            <div class="border border-surface-200 dark:border-surface-700 rounded m-2 p-4" >
-                <img src="{{test.image}}" style="object-fit: cover;" [alt]="test.destinatino" class="w-full h-full rounded-border relative" />
-                <div class="flex flex-column ">
-                    <div class="mt-0 font-semibold text-xl flex">{{ test.destination | titlecase }}</div>
-                    <div class="mt-0 font-semibold text-xl">{{ test.days }} Days</div>
+    <div class="flex px-8 py-4 justify-content-center gap-4">
+        @for (item of featuredList.data; track $index) {
+            <div style="width: 300px; height: 450px;" class="border-round-2xl featured-card cursor-pointer">
+                <div class="p-2">
+                    <img src="{{item.image}}" style="height: 350px; object-fit: cover;" class="w-full border-round-2xl" alt="">
+                </div>
+                <div style="height: 80px;" class="flex px-3 justify-content-between align-items-center">
+                    <div class="flex flex-column align-items-start">
+                        <div class="flex align-items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-blue-500"></i>
+                            <h2>{{item.destination | titlecase}}</h2>
+                        </div>
+                        <p class="pl-3">{{item.days}} Days</p>
+                    </div>
+                    <div class="border-circle p-3 bg-blue-500 featured-card-hide" style="width: 50px; height: 50px;">
+                        <i class="fa-solid fa-chevron-right text-white"></i>
+                    </div>
                 </div>
             </div>
-        </ng-template>
-    </p-carousel>
+            }
+    </div>
 </div>

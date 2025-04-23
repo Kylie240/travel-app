@@ -3,6 +3,16 @@
 //     text-decoration: none;
 //     color: black;
 // }
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: PT Sans Narrow, "Times New Roman", sans-serif;
+}
 ul{
     list-style: none;
+}
+
+p{
+    margin: 0;
 }

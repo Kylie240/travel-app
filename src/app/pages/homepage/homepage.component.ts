@@ -3,10 +3,11 @@ import { ButtonModule } from 'primeng/button';
 import { HeroComponent } from '../../components/hero/hero.component';
 import { CarouselModule } from 'primeng/carousel';
 import { TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-homepage',
-  imports: [ButtonModule, HeroComponent, CarouselModule, UpperCasePipe, TitleCasePipe],
+  imports: [ButtonModule, HeroComponent, CarouselModule, UpperCasePipe, TitleCasePipe, CardModule],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })

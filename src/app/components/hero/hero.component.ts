@@ -11,14 +11,28 @@ import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocompl
   styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
-  searchDates: Date[] = [];
-  searchBudget: number = 0;
-  searchDestination: string = '';
-  items: any[] = ['test'];
+  destinations: string[] = ['rome', 'italy', 'spain', 'greece', 'chine', 'japan', 'thailand'];
+  days: any[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  searchParams = {
+    destination: '',
+    days: '',
+    minPrice: '',
+    maxPrice: '',
+  }
+  minMax = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  editDestination: boolean = false;
+  editDays: boolean = false;
+  editMinMax: boolean = false;
 
   searchDestinations(event: AutoCompleteCompleteEvent) {
     let _items = [...Array(10).keys()];
 
-    this.items = event.query ? [...Array(10).keys()].map((item) => event.query + '-' + item) : _items;
+    this.destinations = this.destinations;
+  }
+
+  search(event: AutoCompleteCompleteEvent) {
+    let _items = [...Array(3).keys()];
+
+    this.minMax = _items;
     }
 }
