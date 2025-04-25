@@ -29,29 +29,29 @@
 
 <div class="w-full flex flex-column justify-content-center text-center align-content-center mt-8 py-8">
     <div class="w-full flex flex-column justify-content-center">
-        <p class="text-blue-400 text-sm">EXPLORE OUR</p>
-        <p class="text-8xl font-bold text-black m-0">{{featuredList.listName | uppercase}} LISTINGS</p>
+        <p class="text-blue-400 text-sm absolute font-semibold text-lg w-full text-center" style="letter-spacing: 20px;">{{featuredList.listName | uppercase}}</p>
+        <p class="font-bold text-black m-0 text-gray-100" style="font-size: 10rem">{{featuredList.listName | uppercase}}</p>
     </div>
     <div class="flex gap-4 justify-content-center">
         @for (item of listOptions; track $index) {
-            <p-button (onClick)="toggleFeaturedList($index)" label="{{item.listName}}" severity="secondary" />
+            <p-button (onClick)="toggleFeaturedList($index)" label="{{item.listName | titlecase}}" severity="secondary" styleClass="{{this.featuredList.listName === item.listName ? 'bg-blue-400 text-white' : ''}}"/>
             }
     </div>
     <div class="flex px-8 py-4 justify-content-center gap-4">
         @for (item of featuredList.data; track $index) {
             <div style="width: 300px; height: 450px;" class="border-round-2xl featured-card cursor-pointer">
-                <div class="p-2">
+                <div class="p-2 mb-2">
                     <img src="{{item.image}}" style="height: 350px; object-fit: cover;" class="w-full border-round-2xl" alt="">
                 </div>
-                <div style="height: 80px;" class="flex px-3 justify-content-between align-items-center">
+                <div style="height: 50px;" class="flex px-4 justify-content-between align-items-center">
                     <div class="flex flex-column align-items-start">
                         <div class="flex align-items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-blue-500"></i>
+                            <i class="fa-solid fa-location-dot text-blue-400"></i>
                             <h2>{{item.destination | titlecase}}</h2>
                         </div>
                         <p class="pl-3">{{item.days}} Days</p>
                     </div>
-                    <div class="border-circle p-3 bg-blue-500 featured-card-hide" style="width: 50px; height: 50px;">
+                    <div class="border-circle p-3 bg-blue-400 featured-card-hide" style="width: 50px; height: 50px;">
                         <i class="fa-solid fa-chevron-right text-white"></i>
                     </div>
                 </div>

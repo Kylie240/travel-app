@@ -1,0 +1,63 @@
+
+<div class="flex justify-content-center pb-4">
+    <div class="grid gap-2">
+        @for (listing of listings; track $index) {
+            <div class="flex flex-column justify-content-between relative">
+                <div style="width: 400px; height: 400px;" class="relative">
+                    <img src="{{listing.image}}" style="object-fit: cover; width: 400px; height: 400px;" class="w-full border-round-3xl z-2" alt="{{listing.countries}}">
+                </div>
+                <div style="width: 400px; height: 400px;" class="text-white absolute flex flex-column justify-content-end p-4">
+                    <p>{{listing.title | titlecase}}</p>
+                    <div class="flex">
+                        <p>$ {{listing.price}} | </p>
+                        @if (listing.countries.length === 1) {
+                            <p> {{listing.countries[0]}}</p>
+                        } @else {
+                            <p> Multi-Country</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <!-- @for (listing of listings; track $index) {
+            <div class="flex flex-column justify-content-between">
+                <div style="width: 320px; height: 220px;" class="relative">
+                    @if (listing.categories.length > 0) {
+                        <div class="bg-white border-circle">
+                            <p class="absolute py-1 px-3 text-sm font-semibold bg-white text-orange-500 border-round-3xl" style="left: 20px; top: 15px;">{{listing.categories[0] | titlecase}}</p>
+                        </div>
+                    }
+                    <span class="flex gap-1 absolute py-1 px-2 text-sm bg-white border-round-3xl" style="right: 20px; bottom: -15px;">
+                        <i class="fa-solid fa-star"></i>
+                        <p class="font-semibold">{{listing.rating}}</p>
+                        <p class="text-gray-400">({{listing.reviews}} reviews)</p>
+                    </span>
+                    <img src="{{listing.image}}" style="object-fit: cover; width: 320px; height: 220px;" class="w-full border-round-3xl z-2" alt="{{listing.countries}}">
+                    <img src="{{listing.image}}" style="object-fit: cover; width: 280px; height: 120px; filter: blur(15px); opacity: 0.25; bottom: 100px; z-index: -2;" class="relative border-round-3xl" alt="{{listing.countries}}">
+                    @if (listing.rating) {
+                        <div class="bg-white border-circle">
+                            <span class="flex gap-1 absolute py-1 px-2 text-sm bg-white border-round-3xl" style="right: 20px; bottom: -15px;">
+                                <i class="fa-solid fa-star"></i>
+                                <p class="font-semibold">{{listing.rating}}</p>
+                                <p class="text-gray-400">({{listing.reviews}} reviews)</p>
+                            </span>
+                        </div>
+                    }
+                </div>
+                <div class="px-3 max-w-14rem">
+                    <h2 class="flex pt-4 pb-2 line-height-1"  style="min-height: 85px;">{{listing.title | titlecase}}</h2>
+                    <div class="flex text-gray-400 font-bold gap-4">
+                        <p> <i class="fa-solid fa-calendar" style="height: 5px;"></i> {{listing.days}} days </p>
+                        <p> <i class="fa-solid fa-user"></i> {{listing.people[0]}} - {{listing.people[1]}} people</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 mt-4 flex border-round-2xl justify-content-between align-items-center px-3" style="height: 60px; width: 100%;">
+                    <div>
+                        <p class="font-bold text-2xl">${{listing.price}}</p>
+                    </div>
+                    <button pButton severity="primary" label="EXLPORE" style="width: 100px; height: 40px;"></button>
+                </div>
+            </div>
+        } -->
+    </div>
+</div>

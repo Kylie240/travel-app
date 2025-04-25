@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { HeroComponent } from '../../components/hero/hero.component';
-import { CarouselModule } from 'primeng/carousel';
 import { TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-homepage',
-  imports: [ButtonModule, HeroComponent, CarouselModule, UpperCasePipe, TitleCasePipe, CardModule],
+  imports: [ButtonModule, HeroComponent, UpperCasePipe, TitleCasePipe, CardModule],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
@@ -128,49 +127,49 @@ nature = [
 city = [
   {
     id: 1,
-    destination: 'greece',
-    price: 1200,
-    days: 7,
-    image: 'https://www.greek-cruises.com/images/cruises/index/7-day-mediterranean-cruise.jpg',
+    destination: 'paris',
+    price: 1500,
+    days: 5,
+    image: 'https://th.bing.com/th/id/R.4ce31a2a3657f3a9ac6e9a2f3c6c52c4?rik=hFr2Y43I3eqhQw&pid=ImgRaw&r=0',
   },
   {
     id: 2,
-    destination: 'china',
-    price: 7000,
-    days: 9,
-    image: 'https://th.bing.com/th/id/R.821020cc73689bcf7075e314ca39cf6e?rik=lDcpVYvtoyqa8A&riu=http%3a%2f%2fwww.qantas.com%2fcontent%2ftravelinsider%2fen%2fexplore%2fasia%2fchina%2fbeijing%2fone-perfect-day-in-beijing%2f_jcr_content%2fparsysTop%2fhero.img.full.medium.jpg%2f1532400471603.jpg&ehk=aMuzmRzjWNzwciEuXMbJuOLX8D7HJUokm0H7d0ZRetw%3d&risl=&pid=ImgRaw&r=0',
+    destination: 'tokyo',
+    price: 1800,
+    days: 7,
+    image: 'https://www.tokyoweekender.com/wp-content/uploads/2022/06/shutterstock_1830039815.jpg',
   },
   {
     id: 3,
-    destination: 'bali',
-    price: 2200,
-    days: 3,
-    image: 'https://th.bing.com/th/id/OIP.VcA1_3qqToZcJBAryIRCqgHaE3?rs=1&pid=ImgDetMain',
+    destination: 'new york',
+    price: 1600,
+    days: 6,
+    image: 'https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/04/29/11/istock-623595614.jpg',
   },
   {
-    id: 3,
-    destination: 'bali',
-    price: 2200,
-    days: 3,
-    image: 'https://th.bing.com/th/id/OIP.VcA1_3qqToZcJBAryIRCqgHaE3?rs=1&pid=ImgDetMain',
+    id: 4,
+    destination: 'barcelona',
+    price: 1400,
+    days: 5,
+    image: 'https://hertravelnotes.com/wp-content/uploads/2023/06/barcelona-00117-768x960.jpg',
   },
 ]
 
 listOptions = [
   {
-    listName: 'popular',
+    listName: 'popular listings',
     data: this.popular,
   },
   {
-    listName: 'best seller',
+    listName: 'best sellers',
     data: this.bestSeller,
   },
   {
-    listName: 'nature',
+    listName: 'nature getaways',
     data: this.nature,
   },
   {
-    listName: 'city',
+    listName: 'city explorations',
     data: this.city,
   },
 ]
