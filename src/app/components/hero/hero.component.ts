@@ -9,6 +9,7 @@ import { PopoverModule } from 'primeng/popover';
 import { ListboxModule } from 'primeng/listbox';
 import { DropdownOption } from '../../models/dtos/DropdownOption';
 import { ReactiveFormsModule } from '@angular/forms';
+import { searchParams } from '../../models/dtos/searchParams';
 
 @Component({
   selector: 'app-hero',
@@ -16,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss'
 })
-export class HeroComponent implements OnInit {
+export default class HeroComponent implements OnInit {
   isAlive: boolean = true;
   isSmallDevice: boolean = false;
   isTablet: boolean = false;
@@ -78,13 +79,15 @@ export class HeroComponent implements OnInit {
     { label: '10 - 13 Days', value: '4' },
     { label: '14+ Days', value: '5' },
   ];
-  searchParams = {
-    destination: '',
-    days: new DropdownOption(),
-    minPrice: '',
-    maxPrice: '',
-  }
-  minMax = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  searchParams: searchParams;
+  minMax = [
+    { label: 'No Min'},
+    { label: '100'},
+    { label: '200'},
+    { label: '200'},
+    { label: '200'},
+    { label: '200'},
+  ];
   editDestination: boolean = false;
   editDays: boolean = false;
   editMinMax: boolean = false;
@@ -94,7 +97,7 @@ export class HeroComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.filteredDestinationOptions = this.destinations;
+    this.setVariables();
     this.breakpointObserver.observe(['(max-width: 600px)','(max-width: 1200px)'])
     .pipe(takeWhile(() => this.isAlive))
     .subscribe(() => {
@@ -111,6 +114,10 @@ export class HeroComponent implements OnInit {
     
   }
 
+  setVariables(){
+    this.searchParams.destination = 'All Destinations';
+  }
+
   filterDestinations({query}: AutoCompleteCompleteEvent) {
       const search = query.toLowerCase();
 
@@ -120,9 +127,13 @@ export class HeroComponent implements OnInit {
       }
     }
 
-    test({query}: AutoCompleteCompleteEvent) {
-      const search = query.toLowerCase();
+  test({query}: AutoCompleteCompleteEvent) {
+    const search = query.toLowerCase();
 
-      this.dayRanges = this.dayRanges.filter((x) => (search === '' || x.label.toLowerCase().includes(search)));
-    }
+    this.dayRanges = this.dayRanges.filter((x) => (search === '' || x.label.toLowerCase().includes(search)));
+  }
+
+  noop(event: any) {
+    event.query = '';
+  }
 }

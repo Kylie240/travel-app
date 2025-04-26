@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { HeroComponent } from '../../components/hero/hero.component';
 import { TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { CardModule } from 'primeng/card';
+import HeroComponent from '../../components/hero/hero.component';
 
 @Component({
   selector: 'app-homepage',
