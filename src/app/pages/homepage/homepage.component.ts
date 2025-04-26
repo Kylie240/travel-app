@@ -154,6 +154,48 @@ city = [
     image: 'https://hertravelnotes.com/wp-content/uploads/2023/06/barcelona-00117-768x960.jpg',
   },
 ]
+popularDestinations = [
+  {
+    country: 'thailand',
+    listingCount: 210,
+    image: 'https://i.pinimg.com/736x/a6/df/03/a6df033bc15ef7f23a44172951ab8d38.jpg',
+  },
+  {
+    country: 'canada',
+    listingCount: 148,
+    image: 'https://i.pinimg.com/736x/1c/5e/ed/1c5eed554843151294c65d706cf9c2f7.jpg',
+  },
+  {
+    country: 'france',
+    listingCount: 342,
+    image: 'https://i.pinimg.com/736x/37/cf/e0/37cfe0535015dd24448115c7e80d1ec3.jpg',
+  },
+  {
+    country: 'singapore',
+    listingCount: 210,
+    image: 'https://i.pinimg.com/736x/4b/0c/c3/4b0cc3bd13f77207ba87a701715c6b43.jpg',
+  },
+  {
+    country: 'canada',
+    listingCount: 148,
+    image: 'https://i.pinimg.com/736x/87/b3/9f/87b39f60a2864bd91194d9fbb598635f.jpg',
+  },
+  {
+    country: 'italy',
+    listingCount: 342,
+    image: 'https://i.pinimg.com/736x/96/a1/ca/96a1ca31fdec6b9bf82e1b716ef41084.jpg',
+  },
+  {
+    country: 'canada',
+    listingCount: 148,
+    image: 'https://i.pinimg.com/736x/87/b3/9f/87b39f60a2864bd91194d9fbb598635f.jpg',
+  },
+  {
+    country: 'italy',
+    listingCount: 342,
+    image: 'https://i.pinimg.com/736x/96/a1/ca/96a1ca31fdec6b9bf82e1b716ef41084.jpg',
+  },
+]
 
 listOptions = [
   {

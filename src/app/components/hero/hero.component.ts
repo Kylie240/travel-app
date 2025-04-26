@@ -5,10 +5,14 @@ import { CardModule } from 'primeng/card';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { BreakpointObserver } from '@angular/cdk/layout'
 import { takeWhile } from 'rxjs';
+import { PopoverModule } from 'primeng/popover';
+import { ListboxModule } from 'primeng/listbox';
+import { DropdownOption } from '../../models/dtos/DropdownOption';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-hero',
-  imports: [CardModule, ButtonModule, FormsModule, AutoCompleteModule],
+  imports: [CardModule, ButtonModule, FormsModule, AutoCompleteModule, PopoverModule, ListboxModule, ReactiveFormsModule],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss'
 })
@@ -17,11 +21,66 @@ export class HeroComponent implements OnInit {
   isSmallDevice: boolean = false;
   isTablet: boolean = false;
   isSmallScreen: boolean = false;
-  destinations: string[] = ['rome', 'italy', 'spain', 'greece', 'chine', 'japan', 'thailand'];
-  days: any[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  filteredDestinationOptions: DropdownOption[] = [];
+  destinations: DropdownOption[] = [
+    {
+      label: 'Germany',
+      value: 'de',
+      items: [
+          { label: 'Berlin', value: 'Berlin' },
+          { label: 'Frankfurt', value: 'Frankfurt' },
+          { label: 'Hamburg', value: 'Hamburg' },
+          { label: 'Munich', value: 'Munich' }
+      ]
+  },
+  {
+      label: 'USA',
+      value: 'us',
+      items: [
+          { label: 'Chicago', value: 'Chicago' },
+          { label: 'Los Angeles', value: 'Los Angeles' },
+          { label: 'New York', value: 'New York' },
+          { label: 'San Francisco', value: 'San Francisco' }
+      ]
+  },
+  {
+      label: 'Japan',
+      value: 'jp',
+      items: [
+          { label: 'Kyoto', value: 'Kyoto' },
+          { label: 'Osaka', value: 'Osaka' },
+          { label: 'Tokyo', value: 'Tokyo' },
+          { label: 'Yokohama', value: 'Yokohama' }
+      ]
+  }
+  ];
+  days: DropdownOption[] = [
+    { label: '1', value: '1' },
+    { label: '2', value: '2' },
+    { label: '3', value: '3' },
+    { label: '4', value: '4' },
+    { label: '5', value: '5' },
+    { label: '6', value: '6' },
+    { label: '7', value: '7' },
+    { label: '8', value: '8' },
+    { label: '9', value: '9' },
+    { label: '10', value: '10' },
+    { label: '11', value: '11' },
+    { label: '12', value: '12' },
+    { label: '13', value: '13' },
+    { label: '14+', value: '14+' },
+  ];
+  dayRanges: DropdownOption[] = [
+    { label: 'Any Duration', value: '0' },
+    { label: '1 Day', value: '1' },
+    { label: '2 - 5 Days', value: '2' },
+    { label: '6 - 9 Days', value: '3' },
+    { label: '10 - 13 Days', value: '4' },
+    { label: '14+ Days', value: '5' },
+  ];
   searchParams = {
     destination: '',
-    days: '',
+    days: new DropdownOption(),
     minPrice: '',
     maxPrice: '',
   }
@@ -35,6 +94,7 @@ export class HeroComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.filteredDestinationOptions = this.destinations;
     this.breakpointObserver.observe(['(max-width: 600px)','(max-width: 1200px)'])
     .pipe(takeWhile(() => this.isAlive))
     .subscribe(() => {
@@ -51,15 +111,18 @@ export class HeroComponent implements OnInit {
     
   }
 
-  searchDestinations(event: AutoCompleteCompleteEvent) {
-    let _items = [...Array(10).keys()];
+  filterDestinations({query}: AutoCompleteCompleteEvent) {
+      const search = query.toLowerCase();
 
-    this.destinations = this.destinations;
-  }
+      this.filteredDestinationOptions = this.destinations.filter((x) => (search === '' || x.label.toLowerCase().includes(search)));
+      if (query.length > 0) {
+        this.filteredDestinationOptions.push(new DropdownOption(query, query))
+      }
+    }
 
-  search(event: AutoCompleteCompleteEvent) {
-    let _items = [...Array(3).keys()];
+    test({query}: AutoCompleteCompleteEvent) {
+      const search = query.toLowerCase();
 
-    this.minMax = _items;
+      this.dayRanges = this.dayRanges.filter((x) => (search === '' || x.label.toLowerCase().includes(search)));
     }
 }

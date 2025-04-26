@@ -1,12 +1,36 @@
 <app-hero></app-hero>
 
+<div class="w-full flex justify-content-center align-items-center py-8">
+    <div class="flex flex-column justify-content-center align-content-center gap-4">
+        <div class="w-full flex flex-column justify-content-center">
+            <p class="text-blue-400 text-md font-semibold text-center">EXPLORE OUR</p>
+            <h2 class="text-black text-8xl line-height-1 m-0 text-center">POPULAR DESTINATIONS</h2>
+            <!-- <p class="text-blue-400 text-sm absolute font-semibold text-lg w-full text-center" style="letter-spacing: 20px;">POPULAR DESTINATIONS</p>
+            <p class="font-bold text-black m-0 text-gray-100 text-center" style="font-size: 10rem; letter-spacing: 10px;">EXPLORE OUR</p> -->
+
+        </div>
+        <div class="flex px-8 py-4 justify-content-center grid w-full gap-4">
+            @for (item of popularDestinations; track $index) {
+                <div style="width: 300px;" class="relative border-round-2xl cursor-pointer">
+                    <div class="p-2 mb-2">
+                        <img src="{{item.image}}" style="height: 150px; object-fit: cover; opacity: 1;" class="w-full border-round-2xl" alt="">
+                    </div>
+                    <span class="flex gap-1 absolute py-1 px-2 text-sm text-white bg-black-alpha-90 border-round-3xl" style="left: 20px; top: 15px;">
+                        <p class="px-2 py-1 text-lg font-medium">{{item.country | titlecase}}</p>
+                    </span>
+                </div>
+                }
+        </div>
+    </div>
+</div>
+
 <div class="w-full flex justify-content-center align-content-center gap-4 py-8">
     <div class="col-6 w-4">
         <img class="border-round-3xl" style="width: 100%; height: 100%; object-fit: cover;" src="https://static.vecteezy.com/system/resources/previews/048/139/676/large_2x/a-mountain-peak-shown-in-the-distance-with-a-nature-background-free-photo.jpg" alt="">
     </div>
     <div class="flex flex-column justify-content-between col-6 w-4 gap-4">
         <div class="flex flex-column">
-            <p class="text-blue-400 text-sm font-semibold">ABOUT US</p>
+            <p class="text-blue-400 text-sm font-semibold">ABOUT</p>
             <h2 class="text-black text-8xl line-height-1 m-0">MEMORABLE TRAVELS</h2>
             <p class="line-height-2 ml-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
@@ -51,7 +75,7 @@
                         </div>
                         <p class="pl-3">{{item.days}} Days</p>
                     </div>
-                    <div class="border-circle p-3 bg-blue-400 featured-card-hide" style="width: 50px; height: 50px;">
+                    <div class="border-circle p-3 bg-black-alpha-90 featured-card-hide" style="width: 50px; height: 50px;">
                         <i class="fa-solid fa-chevron-right text-white"></i>
                     </div>
                 </div>

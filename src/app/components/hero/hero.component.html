@@ -1,37 +1,25 @@
-<div class="pb-8 main-card">
-    <div style="width: 100%; height: 800px;" class="flex">
-        <div class="col-8 flex flex-column gap-3" style="height: 100%;">
-            <img class="border-round-3xl" style="width: 100%; height: 650px; object-fit: cover;" src="https://static.vecteezy.com/system/resources/previews/048/139/676/large_2x/a-mountain-peak-shown-in-the-distance-with-a-nature-background-free-photo.jpg" alt="">
-            <div class="bg-white shadow-2 border-round-2xl flex" style="width: 100%; height: 100px;">
+<div class="pb-8">
+    <div style="width: 100%; height: 800px;" class="flex gap-4 px-1">
+        <div class="w-full flex flex-column gap-4" style="height: 100%;">
+            <img class="border-round-3xl" style="width: 100%; height: calc(100% - 100px - 1.5rem); object-fit: cover;" src="https://static.vecteezy.com/system/resources/previews/048/139/676/large_2x/a-mountain-peak-shown-in-the-distance-with-a-nature-background-free-photo.jpg" alt="">
+            <div class="bg-white shadow-2 border-round-2xl flex px-4" style="width: 100%; height: 120px;">
                 <div class="flex justify-content-between w-full">
-                    <div style="width: 30%;" class="flex align-items-start pt-3" (click)="editDestination = !editDestination">
+                    <div style="width: 30%;" class="cursor-pointer flex align-items-start pt-3">
                         <div class="flex flex-column w-full justify-content-center px-4 gap-1 border-right-1 border-300">
                             <div class="flex align-items-center justify-content-between">
                                 <p class="m-0 font-semibold">Destination</p>
                                 <i class="fa-solid fa-chevron-down mr-4"></i>
                             </div>
-                            <div (click)="$event.stopPropagation()" (mouseleave)="editDestination = false">
-                                @if (editDestination) {
-                                    <p-autocomplete [(ngModel)]="searchParams.destination" [suggestions]="destinations" (completeMethod)="searchDestinations($event)" />
-                                } @else {
-                                    <p class="pt-3">Any Destination</p>
-                                }
-                            </div>
+                            <p-autocomplete [completeOnFocus]="true" [showClear]="true" [group]="true" [suggestions]="filteredDestinationOptions" (completeMethod)="filterDestinations($event)" />
                         </div>
                     </div>
-                    <div style="width: 30%;" class="flex align-items-start pt-3" (click)="editDays = !editDays">
+                    <div style="width: 30%;" class="cursor-pointer flex align-items-start pt-3">
                         <div class="flex flex-column px-4 gap-1 w-full border-right-1 border-300">
                             <div class="flex align-items-center justify-content-between">
-                                <p class="m-0 font-semibold">Days</p>
+                                <p class="m-0 font-semibold">Duration</p>
                                 <i class="fa-solid fa-chevron-down mr-4"></i>
                             </div>
-                            <div (click)="$event.stopPropagation()" (mouseleave)="editDays = false">
-                                @if (editDays) {
-                                    <p-autocomplete [(ngModel)]="searchParams.days" [suggestions]="days" (completeMethod)="searchDestinations($event)" />
-                                } @else {
-                                    <p class="pt-3">Any Duration</p>
-                                }
-                            </div>
+                            <p-autocomplete [completeOnFocus]="true" [showClear]="true"[suggestions]="dayRanges" (completeMethod)="test($event)"/>
                         </div>
                     </div>
                     <div style="width: 30%;" class="flex align-items-start pt-3" (click)="editMinMax = !editMinMax">
@@ -45,12 +33,12 @@
                                     <div class="flex">
                                      <div class="flex flex-column">
                                          Minimum
-                                         <p-autocomplete [(ngModel)]="searchParams.minPrice" [dropdown]="true" [suggestions]="minMax" (completeMethod)="search($event)"/>
+                                         <p-autocomplete [(ngModel)]="searchParams.minPrice" [dropdown]="true" [suggestions]="minMax" />
                                      </div>
                                      <p>-</p>
                                      <div class="flex flex-column">
                                          Maximum
-                                         <p-autocomplete [(ngModel)]="searchParams.maxPrice" [dropdown]="true" [suggestions]="minMax" (completeMethod)="search($event)" dropdownMode="current"/>
+                                         <p-autocomplete [(ngModel)]="searchParams.maxPrice" [dropdown]="true" [suggestions]="minMax"  dropdownMode="current"/>
                                      </div>
                                     </div>
                                 } @else {
@@ -61,25 +49,23 @@
                     </div>
                 </div>
                 <div class="flex align-items-center p-3">
-                    <button pButton severity="primary" label="Search" style="width: 120px; height: 100%;"></button>
+                    <button pButton severity="contrast" label="Search" style="width: 120px; height: 50px;"></button>
                 </div>
             </div>
         </div>
-        <div class="flex flex-column col-4 gap-3">
+        <div class="flex flex-column gap-4" style="max-width: 600px;">
             <div style="width: 100%; height: 42%;">
                 <img class="border-round-3xl" style="width: 100%; height: 100%; object-fit: cover;" src="https://www.tripsavvy.com/thmb/e9MKTSQO9CrUAAD4nSVvg5lLDLY=/5616x3743/filters:no_upscale():max_bytes(150000):strip_icc()/navagio-bay--zakynthos--greece---shipwreck-beach-1061326158-58458295528941059a81d843388f56d2.jpg" alt="">
             </div>
             <div style="height: 42%;" class="p-4 bg-black-alpha-90 border-round-2xl flex flex-column justify-content-between" >
                 <i class="fa-solid fa-plane text-white"></i>
                 <p class="m-0 text-white text-xl line-height-3" style="bottom: 0px;">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-                    quisquam repellat
+                    Discover, customize, and create unforgettable travel itineraries with ease. Search top destinations, explore curated experiences, and build your dream journey — all in one place. Whether you're planning a quick getaway or an epic adventure, we make it simple and fun to design a trip that's truly yours.
                 </p>
             </div>
-            <div style="width: 100%; height: 16%;">
+            <div style="width: 100%; height: 100px;">
                 <img class="border-round-3xl" style="width: 100%; height: 100%; object-fit: cover;" src="https://images.pexels.com/photos/2104152/pexels-photo-2104152.jpeg?cs=srgb&dl=clouds-cold-dawn-2104152.jpg&fm=jpg" alt="">
             </div>
         </div>
     </div>
-
 </div>
