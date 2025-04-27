@@ -1,5 +1,6 @@
 import { TitleCasePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -143,6 +144,12 @@ export class ExplorePageComponent {
       name: 'Mountains',
     },
   ]
+
+  constructor(
+    private router: Router,
+  )
+  {}
+
   calculateNightlyPrice(listing: any) {
     return Math.floor(listing.price / listing.days);
   }
@@ -150,4 +157,7 @@ export class ExplorePageComponent {
   showDialog() {
     this.visible = true;
 }
+  navigateToListing(listing: any) {
+    this.router.navigate(['/listing'])
+  }
 }

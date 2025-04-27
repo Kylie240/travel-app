@@ -48,10 +48,10 @@
                 </span>
             }
         </div>
-        <p-button icon="fa-solid fa-sliders" label="Filter" [outlined]="true" severity="secondary" />
+        <p-button (onClick)="showDialog()" icon="fa-solid fa-sliders" label="Filter" [outlined]="true" severity="secondary" />
     </div>
 
-    <p-dialog header="Header" (onClick)="showDialog()" [(visible)]="visible" [modal]="true" [style]="{ width: '25rem' }">
+    <p-dialog header="Header" [dismissableMask]="true" [(visible)]="visible" [modal]="true" [style]="{ width: '25rem' }">
             <ng-template pTemplate="header">
                 <div class="inline-flex align-items-center justify-content-center gap-2">
                     <h2>Filters</h2>
@@ -86,7 +86,7 @@
     <div class="flex w-full justify-content-center pb-4">
         <div class="grid row-gap-6">
             @for (listing of listings; track $index) {
-                <div class="flex justify-content-start relative col-6 gap-6 px-8">
+                <div class="flex justify-content-start relative col-6 gap-6 px-8 cursor-pointer" (click)="navigateToListing(listing)">
                     <!-- <span class="flex absolute py-2 z-5 px-2 text-sm bg-white border-round-3xl" style="left: 20px; top: 15px;">
                         <p class="font-semibold">{{listing.title}}</p>
                     </span> -->
