@@ -1,8 +1,9 @@
+@import "primeicons/primeicons.css";
 /* You can add global styles to this file, and also import other style files */
-// a{
-//     text-decoration: none;
-//     color: black;
-// }
+a{
+    text-decoration: none;
+    color: black;
+}
 
 *{
     box-sizing: border-box;
@@ -19,4 +20,11 @@ p{
 
 .main-card{
     max-width: 1400px;
+}
+
+.divider{
+    height: 1px;
+    width: 100%;
+    background-color: var(--p-gray-200);
+    margin: 0px;
 }

@@ -1,18 +1,41 @@
-import { TitleCasePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgStyle, TitleCasePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { AccordionModule } from 'primeng/accordion';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
-
-
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { RatingPipe } from '../../pipes/ratingpipe';
 @Component({
   selector: 'app-listing',
-  imports: [TitleCasePipe, TableModule, AccordionModule, RatingModule, FormsModule],
+  imports: [
+    TitleCasePipe, 
+    TableModule, 
+    BreadcrumbModule, 
+    AccordionModule, 
+    RatingModule, 
+    FormsModule, 
+    CardModule, 
+    ButtonModule,
+    RatingPipe,
+    DatePipe,
+    CurrencyPipe,
+    NgStyle
+  ],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss'
 })
 export class ListingComponent {
+  userHasViewPermission: boolean = true;
+  items = [
+    { label: 'Europe' },
+    { label: 'Mediterranean' },
+    { label: 'Greece' },
+  ];
+home = { icon: 'pi pi-home', routerLink: '/' };
+
   listing = {
     id: 1,
     categories: ['best seller', 'top rated', 'budget friendly'],
@@ -154,8 +177,17 @@ export class ListingComponent {
       title: 'title',
       description: 'description',
       rating: 3,
-    },
-    ]
+    }
+    ],
+    creator: {
+      name: 'Kylie',
+      image: 'https://media.licdn.com/dms/image/v2/D4E03AQH1o4Avl01RCA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1698873322772?e=2147483647&v=beta&t=4lwjMLSYjyH9c528Y9FQZXn_tqii1bFYpjSJ2v3VOX4',
+      reviews: 3289,
+      rating: 4.59,
+      joined: new Date(),
+      title: 'Solo Travel Enthusiast',
+      about: 'My listings are mainly full of solor travel plans that allow other women of color to travel comfortably and affordbly to places outside of the U.S.',
+    }
   }
 
   handleLink(link: string) {
