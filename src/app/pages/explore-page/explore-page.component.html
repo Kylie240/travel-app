@@ -1,5 +1,5 @@
 
-<div class="flex flex-column w-full justify-content-start align-items-center gap-8">
+<div class="flex flex-column w-full justify-content-start align-items-center px-8">
     <div class="bg-white shadow-2 border-round-2xl flex px-4" style="width: 800px; height: 120px;">
         <div class="flex justify-content-between w-full">
             <div style="width: 30%;" class="cursor-pointer flex align-items-start pt-3">
@@ -40,11 +40,11 @@
     </div>
     
     <div class="border-top-1 pt-4 border-gray-300 w-full flex justify-content-between px-4">
-        <div class="flex">
+        <div class="flex gap-1" style="width: 90%;">
             @for (filter of filters; track $index) {
-                <span class="cursor-pointer flex flex-column py-1 z-5 px-2 align-items-center text-gray-500" style="width: 120px; height: 120px;">
-                    <i class="{{filter.icon}} text-2xl"></i>
-                    <p class="text-lg">{{filter.name}}</p>
+                <span class="cursor-pointer flex flex-column py-1 z-5 align-items-center text-gray-500" style="width: 120px; height: 120px;">
+                    <i class="{{filter.icon}} text-xl pb-1"></i>
+                    <p class="text-md">{{filter.name}}</p>
                 </span>
             }
         </div>

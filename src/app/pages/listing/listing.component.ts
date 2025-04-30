@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe, NgStyle, TitleCasePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgFor, NgStyle, TitleCasePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { AccordionModule } from 'primeng/accordion';
@@ -8,33 +8,41 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { RatingPipe } from '../../pipes/ratingpipe';
+import HeroComponent from '../../components/hero/hero.component';
+import ListingHeaderComponent from "../../components/listing-header/listing-header.component";
 @Component({
   selector: 'app-listing',
   imports: [
-    TitleCasePipe, 
-    TableModule, 
-    BreadcrumbModule, 
-    AccordionModule, 
-    RatingModule, 
-    FormsModule, 
-    CardModule, 
+    TitleCasePipe,
+    TableModule,
+    BreadcrumbModule,
+    AccordionModule,
+    RatingModule,
+    FormsModule,
+    CardModule,
     ButtonModule,
     RatingPipe,
     DatePipe,
     CurrencyPipe,
-    NgStyle
-  ],
+    NgStyle,
+    NgFor,
+    HeroComponent,
+    ListingHeaderComponent
+],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss'
 })
 export class ListingComponent {
   userHasViewPermission: boolean = true;
+  accomodationList = [];
+  activityList = [];
+  restaurantList = [];
   items = [
     { label: 'Europe' },
     { label: 'Mediterranean' },
     { label: 'Greece' },
   ];
-home = { icon: 'pi pi-home', routerLink: '/' };
+  home = { icon: 'pi pi-home', routerLink: '/' };
 
   listing = {
     id: 1,
@@ -179,6 +187,43 @@ home = { icon: 'pi pi-home', routerLink: '/' };
       rating: 3,
     }
     ],
+    activities: [{
+      link: 'https://www.viator.com/tours/Athens/Athens-All-Included-Acropolis-and-Museum-In-a-Cultural-Guided-Walking-Tour/d496-51192P6',
+      photo: 'https://dynamic-media.tacdn.com/media/photo-o/2e/af/d6/c7/caption.jpg?w=700&h=500&s=1',
+      title: 'title',
+      description: 'description',
+      rating: 3,
+    },
+    {
+      link: 'https://www.viator.com/tours/Athens/Athens-All-Included-Acropolis-and-Museum-In-a-Cultural-Guided-Walking-Tour/d496-51192P6',
+      photo: 'https://dynamic-media.tacdn.com/media/photo-o/2e/af/d6/c7/caption.jpg?w=700&h=500&s=1',
+      title: 'title',
+      description: 'description',
+      rating: 3,
+    },
+  ],
+  restaurants: [{
+    link: 'https://www.tripadvisor.com/Hotel_Review-g189400-d13338412-Reviews-Athenaeum_K29-Athens_Attica.html?m=19905',
+    photo: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/5c/1f/a2/k29.jpg?w=1000&h=-1&s=1',
+    title: 'title',
+    description: 'description',
+    rating: 3,
+  },
+  {
+    link: 'https://www.tripadvisor.com/Hotel_Review-g189400-d13338412-Reviews-Athenaeum_K29-Athens_Attica.html?m=19905',
+    photo: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/5c/1f/a2/k29.jpg?w=1000&h=-1&s=1',
+    title: 'title',
+    description: 'description',
+    rating: 5,
+  },
+  {
+    link: 'https://www.tripadvisor.com/Hotel_Review-g189400-d13338412-Reviews-Athenaeum_K29-Athens_Attica.html?m=19905',
+    photo: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/5c/1f/a2/k29.jpg?w=1000&h=-1&s=1',
+    title: 'title',
+    description: 'description',
+    rating: 2,
+  }
+],
     creator: {
       name: 'Kylie',
       image: 'https://media.licdn.com/dms/image/v2/D4E03AQH1o4Avl01RCA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1698873322772?e=2147483647&v=beta&t=4lwjMLSYjyH9c528Y9FQZXn_tqii1bFYpjSJ2v3VOX4',

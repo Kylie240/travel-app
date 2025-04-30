@@ -1,0 +1,23 @@
+<div class="pb-4">
+    <div style="width: 100%; height: 700px;" class="flex gap-4 px-1 relative">
+        <div class="w-full flex flex-column gap-4" style="height: 100%;">
+            <img class="border-round-3xl w-full h-full" style="object-fit: cover;" src="{{mainImage}}" alt="">
+        </div>
+        <!-- <span class="absolute text-white font-bold text-8xl w-30rem line-height-1" style="bottom: 20px; left: 20px;">{{title | titlecase}}</span> -->
+        <div class="flex flex-column gap-4 h-full" style="max-width: 500px;">
+            <div style="width: 100%; height: 45%; position: relative;">
+                <span class="absolute bg-white py-2 px-3 border-round-3xl cursor-pointer hover:shadow-3" style="bottom: 20px; right: 20px;">View all photos</span>
+                <img class="border-round-3xl" style="width: 100%; height: 100%; object-fit: cover;" src="{{secondImage}}" alt="">
+            </div>
+            <div style="height: 55%;" class="p-4 bg-black-alpha-90 border-round-2xl flex flex-column justify-content-between" >
+                <i class="fa-solid fa-plane text-white"></i>
+                <p class="m-0 text-white text-lg line-height-3" style="bottom: 0px;">
+                    {{overview}}
+                </p>
+            </div>
+            <!-- <div style="width: 100%; height: 100px;">
+                <img class="border-round-3xl" style="width: 100%; height: 100%; object-fit: cover;" src="{{mainImage}}" alt="">
+            </div> -->
+        </div>
+    </div>
+</div>

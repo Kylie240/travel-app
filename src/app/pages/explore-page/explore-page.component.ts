@@ -29,7 +29,7 @@ export class ExplorePageComponent {
       views: 117,
       rating: 4.96,
       reviews: 4,
-      image: 'https://www.magnificentworld.com/wp-content/uploads/2020/05/Northern-Lights-Iceland-6-823x1024.jpg',
+      image: 'https://i.pinimg.com/736x/7c/28/ea/7c28eaf433cee4728de91f55122a5fe5.jpg',
     },
     {
       id: 2,
@@ -75,7 +75,22 @@ export class ExplorePageComponent {
       views: 5,
       rating: 5.0,
       reviews: 1,
-      image: 'https://th.bing.com/th/id/OIP.kB7bCIZXzygI6cWIb1bWKgHaFE?rs=1&pid=ImgDetMain',
+      image: 'https://www.exoticca.com/_next/image?url=https%3A%2F%2Fstatic-us.exoticca.com%2Fimg%2Fp%2F7452%2F252189.jpg&w=1920&q=75',
+    }, {
+      id: 4,
+      categories: ['multi city'],
+      countries: ['morocco'],
+      cities: ['Marrakech', 'Casablanca'],
+      title: 'Grand Tour & Kasbah Route',
+      descrption: 'A complete tour of Morocco, including Marrakech, Casablanca, the beauty of the Atlas Mountains and a night in the desert city of Ouarzazate.',
+      tags: ['baecation', 'culture', 'ancient history', 'spring', 'europe'],
+      price: 1300,
+      days: 12,
+      people: [1],
+      views: 5,
+      rating: 5.0,
+      reviews: 1,
+      image: 'https://www.exoticca.com/_next/image?url=https%3A%2F%2Fstatic-us.exoticca.com%2Fimg%2Fp%2F6124%2F263587.jpg&w=1920&q=75',
     },
   ]
   filters = [
@@ -125,7 +140,7 @@ export class ExplorePageComponent {
     },
     {
       icon: 'fa-solid fa-van-shuttle',
-      name: 'Family Friendly',
+      name: 'Family',
     },
     {
       icon: 'fa-solid fa-utensils',
