@@ -1,22 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabel } from 'primeng/floatlabel';
+import { FormsModule } from '@angular/forms';
+import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
+import { InputNumberModule } from 'primeng/inputnumber';
 @Component({
   selector: 'app-navbar',
-  imports: [ButtonModule, RouterLink, RouterLinkActive],
+  imports: [
+    ButtonModule, 
+    RouterLink, 
+    RouterLinkActive, 
+    DialogModule,
+    InputTextModule,
+    FormsModule,
+    FloatLabel,
+    AutoCompleteModule,
+    InputNumberModule,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
   isHomepage = false;
+  visible = false;
+  accountAction = '';
   user: any;
-
+  searchParams = {
+    phone: '',
+  }
 
 ngOnInit(): void {
   // let test = document.getElementById
   // this.getUser;
 }
+
+items: any[] = [];
+
+  value: any;
+
+  search(event: AutoCompleteCompleteEvent) {
+  let _items = [...Array(10).keys()];
+
+  this.items = event.query ? [...Array(10).keys()].map((item) => event.query + '-' + item) : _items;
+  }
 
 getUser() {
   this.user = {
@@ -28,5 +57,10 @@ getUser() {
     title: 'Solo Travel Enthusiast',
     about: 'My listings are mainly full of solor travel plans that allow other women of color to travel comfortably and affordbly to places outside of the U.S.',
   }
+}
+
+showAccountDialog(dialogType: string) {
+  this.accountAction = dialogType;
+  this.visible = true;
 }
 }
