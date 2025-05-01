@@ -34,50 +34,133 @@
 </div>
 
 <!-- Login Dialog -->
-<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '25rem' }" dismissableMask="true">
+<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '25rem' }" (onHide)="closeAccountDialog()" dismissableMask="true">
     <ng-template #header>
         <div class="w-full justify-content-center">
             <p>Log in or sign up</p>
         </div>
     </ng-template>
-    <ng-template #content>
-        <div class="w-full justify-content-center">
-            <span class="text-surface-500 dark:text-surface-400 block text-2xl mb-2">Welcome to Jetty</span>
-                <p-autocomplete [(ngModel)]="value" [dropdown]="true" [styleClass]="'w-full'" [suggestions]="items" (completeMethod)="search($event)" />
-                <p-floatlabel variant="in" class="w-full">
-                    <input pInputText id="in_label" style="height: 38px; width: 100%;" [(ngModel)]="searchParams.phone" autocomplete="off" />
-                    <label for="in_label" class="text-sm">Phone number</label>
-                </p-floatlabel>
-            <p class="text-xs my-1 w-full ml-1">We’ll call or text you to confirm your number. Standard message and data rates apply. <a href="/contact">Privacy Policy</a></p>
-            <p-button [styleClass]="'w-full'" label="Continue" severity="primary"/>
-        </div>
-    </ng-template>
-    
-    <ng-template #footer>
-        <div class="flex flex-column w-full">
-            <div class="flex align-content-center">
-                <div class="divider"></div>
-                <p class="px-2 relative text-sm" style="bottom: 8px;">or</p>
-                <div class="divider"></div>
+    @if (!showSignUp && !showLogIn) {
+        <ng-template #content>
+            <div class="w-full justify-content-center">
+                <span class="text-surface-500 dark:text-surface-400 block text-2xl mb-2">Welcome to Jetty</span>
+                    <p-autocomplete [(ngModel)]="value" [dropdown]="true" [styleClass]="'w-full'" [suggestions]="items" (completeMethod)="search($event)" />
+                    <p-floatlabel variant="in" class="w-full">
+                        <input pInputText id="in_label" style="height: 38px; width: 100%;" [(ngModel)]="searchParams.phone" autocomplete="off" />
+                        <label for="in_label" class="text-sm">Phone number</label>
+                    </p-floatlabel>
+                <p class="text-xs my-1 w-full ml-1">We’ll call or text you to confirm your number. Standard message and data rates apply. <a href="/contact">Privacy Policy</a></p>
+                <p-button [styleClass]="'w-full'" label="Continue" (onClick)="getUser(); showLogIn = true" severity="primary"/>
             </div>
-            <div class="flex flex-column w-full gap-2">
-                <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
-                    <i class="fa-brands fa-google absolute" style="left: 15px"></i>
-                    <p>Continue with Google</p>
-                </span>
-                <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
-                    <i class="fa-brands fa-apple absolute" style="left: 15px"></i>
-                    <p>Continue with Apple</p>
-                </span>
-                <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
-                    <i class="fa-solid fa-envelope absolute" style="left: 15px"></i>
-                    <p>Continue with email</p>
-                </span>
-                <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
-                    <i class="fa-brands fa-facebook-f absolute" style="left: 15px"></i>
-                    <p>Continue with Facebook</p>
-                </span>
+        </ng-template>
+        
+        <ng-template #footer>
+            <div class="flex flex-column w-full">
+                <div class="flex align-content-center">
+                    <div class="divider"></div>
+                    <p class="px-2 relative text-sm" style="bottom: 8px;">or</p>
+                    <div class="divider"></div>
+                </div>
+                <div class="flex flex-column w-full gap-2">
+                    <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
+                        <i class="fa-brands fa-google absolute" style="left: 15px"></i>
+                        <p>Continue with Google</p>
+                    </span>
+                    <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
+                        <i class="fa-brands fa-apple absolute" style="left: 15px"></i>
+                        <p>Continue with Apple</p>
+                    </span>
+                    <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
+                        <i class="fa-solid fa-envelope absolute" style="left: 15px"></i>
+                        <p>Continue with email</p>
+                    </span>
+                    <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
+                        <i class="fa-brands fa-facebook-f absolute" style="left: 15px"></i>
+                        <p>Continue with Facebook</p>
+                    </span>
+                </div>
             </div>
-        </div>
-    </ng-template>
+        </ng-template>
+    } @else if (showLogIn) {
+        @if (!showOTC) {
+            <ng-template #content>
+                <div class="w-full flex flex-column align-items-center gap-2">
+                    <img style="width: 120px; height: 120px; object-fit: cover;" class="border-circle" src="{{user?.image}}" alt="">
+                    <div class="flex flex-column align-items-center gap-2">
+                        <p>{{user?.email}}</p>
+                        <p>{{user?.phone}}</p>
+                    </div>
+                </div>
+                @if (exceedsLoginAttempts) {
+                    <div class="w-full align-items-center flex hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl m-1 text-red-500"></i>
+                        <p>You’ve reached the max confirmation attempts. Try again in 1 hour</p>
+                    </div>
+                }
+            </ng-template>
+                
+            <ng-template #footer>
+                <div class="flex flex-column">
+                    <p-button [styleClass]="'w-full'" label="Continue" (onClick)="exceedsLoginAttempts ? closeAccountDialog() : showOTC = true" severity="primary"/>
+                    <p class="text-xs my-1 w-full ml-1">We’ll call or text you to confirm your number. Standard message and data rates apply.</p>
+                    <p class="text-sm my-1 w-full ml-1">Not you? <span (click)="showLogIn = false; showOTC = false" class="font-semibold underline cursor-pointer">Use another account</span></p>
+                </div>
+            </ng-template>
+        } @else {
+            <ng-template #content>
+                <div class="w-full justify-content-center">
+                    <p class="mb-3">Enter the code we sent over SMS to {{user?.phone}}:</p>
+                    <p-inputotp [(ngModel)]="otcUserInput" [integerOnly]="true" [length]="6"/>
+                </div>
+            </ng-template>
+                
+            <ng-template #footer>
+               <div class="flex justify-content-between w-full align-items-center">
+                    <span class="font-semibold underline cursor-pointer">More options</span>
+                    <p-button [disabled]="otcUserInput.toString() !== otcValue.toString()" [styleClass]="'w-full'" label="Continue" (onClick)="visible = false" severity="primary"/>
+               </div>
+            </ng-template>
+        }
+    } @else if (showSignUp) {
+        <ng-template #content>
+            <div class="w-full justify-content-center">
+                <span class="text-surface-500 dark:text-surface-400 block text-2xl mb-2">Welcome to Jetty</span>
+                    <p-autocomplete [(ngModel)]="value" [dropdown]="true" [styleClass]="'w-full'" [suggestions]="items" (completeMethod)="search($event)" />
+                    <p-floatlabel variant="in" class="w-full">
+                        <input pInputText id="in_label" style="height: 38px; width: 100%;" [(ngModel)]="searchParams.phone" autocomplete="off" />
+                        <label for="in_label" class="text-sm">Phone number</label>
+                    </p-floatlabel>
+                <p class="text-xs my-1 w-full ml-1">We’ll call or text you to confirm your number. Standard message and data rates apply. <a href="/contact">Privacy Policy</a></p>
+                <p-button [styleClass]="'w-full'" label="Continue" (onClick)="showSignUp = true" severity="primary"/>
+            </div>
+        </ng-template>
+        
+        <ng-template #footer>
+            <div class="flex flex-column w-full">
+                <div class="flex align-content-center">
+                    <div class="divider"></div>
+                    <p class="px-2 relative text-sm" style="bottom: 8px;">or</p>
+                    <div class="divider"></div>
+                </div>
+                <div class="flex flex-column w-full gap-2">
+                    <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
+                        <i class="fa-brands fa-google absolute" style="left: 15px"></i>
+                        <p>Continue with Google</p>
+                    </span>
+                    <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
+                        <i class="fa-brands fa-apple absolute" style="left: 15px"></i>
+                        <p>Continue with Apple</p>
+                    </span>
+                    <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
+                        <i class="fa-solid fa-envelope absolute" style="left: 15px"></i>
+                        <p>Continue with email</p>
+                    </span>
+                    <span class="w-full cursor-pointer hover:bg-gray-100 border-1 border-gray-300 relative text-center p-2 border-round-lg">
+                        <i class="fa-brands fa-facebook-f absolute" style="left: 15px"></i>
+                        <p>Continue with Facebook</p>
+                    </span>
+                </div>
+            </div>
+        </ng-template>
+    }
 </p-dialog>

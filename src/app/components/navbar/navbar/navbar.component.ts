@@ -7,6 +7,8 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { FormsModule } from '@angular/forms';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { InputOtpModule } from 'primeng/inputotp';
+
 @Component({
   selector: 'app-navbar',
   imports: [
@@ -19,6 +21,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     FloatLabel,
     AutoCompleteModule,
     InputNumberModule,
+    InputOtpModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
@@ -26,7 +29,12 @@ import { InputNumberModule } from 'primeng/inputnumber';
 export class NavbarComponent implements OnInit {
   isHomepage = false;
   visible = false;
-  accountAction = '';
+  showSignUp = false;
+  showLogIn = false;
+  showOTC = false;
+  exceedsLoginAttempts = false;
+  otcValue = 123456;
+  otcUserInput: number;
   user: any;
   searchParams = {
     phone: '',
@@ -50,6 +58,8 @@ items: any[] = [];
 getUser() {
   this.user = {
     name: 'Kylie',
+    email: 'olivkylie@gmail.com',
+    phone: '9545945535',
     image: 'https://media.licdn.com/dms/image/v2/D4E03AQH1o4Avl01RCA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1698873322772?e=2147483647&v=beta&t=4lwjMLSYjyH9c528Y9FQZXn_tqii1bFYpjSJ2v3VOX4',
     reviews: 3289,
     rating: 4.59,
@@ -60,7 +70,15 @@ getUser() {
 }
 
 showAccountDialog(dialogType: string) {
-  this.accountAction = dialogType;
   this.visible = true;
+}
+
+closeAccountDialog() {
+  this.visible = false;
+  this.user = null;
+  this.showSignUp = false;
+  this.showLogIn = false;
+  this.showOTC = false;
+  this.otcUserInput = 0;
 }
 }
