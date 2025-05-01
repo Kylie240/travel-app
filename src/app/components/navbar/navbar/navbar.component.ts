@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
 
 ngOnInit(): void {
   // let test = document.getElementById
-  // this.getUser;
+  this.getUser;
 }
 
 items: any[] = [];

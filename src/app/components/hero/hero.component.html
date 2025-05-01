@@ -1,5 +1,47 @@
 <div class="pb-8">
     <div style="width: 100%; height: 800px;" class="flex gap-4 px-1">
+        <!-- <div class="w-full flex flex-column align-items-center" style="height: 100%;">
+            <img style="width: 100%; height: 800px; object-fit: cover;" src="https://static.vecteezy.com/system/resources/previews/048/139/676/large_2x/a-mountain-peak-shown-in-the-distance-with-a-nature-background-free-photo.jpg" alt="">
+            <div class="bg-white shadow-2 border-round-2xl flex px-4 relative" style="max-width: 1000px; height: 120px; bottom: 40px;">
+                <div class="flex justify-content-between w-full">
+                    <div style="width: 30%;" class="cursor-pointer flex align-items-start pt-3">
+                        <div class="flex flex-column w-full justify-content-center pr-4 pl-2 gap-1 border-right-1 border-300">
+                            <div class="flex align-items-center justify-content-between pl-2">
+                                <p class="m-0 font-semibold">Destination</p>
+                                <i class="fa-solid fa-chevron-down mr-4"></i>
+                            </div>
+                            <p-autocomplete [completeOnFocus]="true" [showClear]="true" [group]="true" [suggestions]="filteredDestinationOptions" (completeMethod)="filterDestinations($event)" />
+                        </div>
+                    </div>
+                    <div style="width: 30%;" class="cursor-pointer flex align-items-start pt-3">
+                        <div class="flex flex-column px-4 gap-1 w-full border-right-1 border-300">
+                            <div class="flex align-items-center justify-content-between">
+                                <p class="m-0 font-semibold">Duration</p>
+                                <i class="fa-solid fa-chevron-down mr-4"></i>
+                            </div>
+                            <p-autocomplete [completeOnFocus]="true" [showClear]="true"[suggestions]="dayRanges" (completeMethod)="test($event)"/>
+                        </div>
+                    </div>
+                    <div style="width: 30%;" class="flex align-items-start pt-3" (click)="editMinMax = !editMinMax">
+                        <div class="flex flex-column px-4 gap-1">
+                            <div class="flex align-items-center justify-content-between">
+                                <p class="m-0 font-semibold">Price Range</p>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="flex w-full">
+                                <p-autocomplete [completeOnFocus]="true" [showClear]="true"[suggestions]="minMax" (completeMethod)="noop($event)"/>
+                                <span> - </span>
+                                <p-autocomplete [completeOnFocus]="true" [showClear]="true"[suggestions]="minMax" (completeMethod)="noop($event)" field="label"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex align-items-center p-3">
+                    <button pButton severity="contrast" label="Search" style="width: 120px; height: 50px;"></button>
+                </div>
+            </div>
+        </div> -->
+
         <div class="w-full flex flex-column gap-4" style="height: 100%;">
             <img class="border-round-3xl" style="width: 100%; height: calc(100% - 100px - 1.5rem); object-fit: cover;" src="https://static.vecteezy.com/system/resources/previews/048/139/676/large_2x/a-mountain-peak-shown-in-the-distance-with-a-nature-background-free-photo.jpg" alt="">
             <div class="bg-white shadow-2 border-round-2xl flex px-4" style="width: 100%; height: 120px;">
