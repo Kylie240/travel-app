@@ -18,12 +18,11 @@
             <li> <a routerLink="/about" routerLinkActive="active">About</a> </li>
             <li> <a routerLink="/explore" routerLinkActive="active">Listings</a> </li>
             <li> <a routerLink="/contact" routerLinkActive="active">Contact Us</a> </li>
-            {{user}}
         }
     </ul>
     <div class="flex align-items-center">
         @if (user){
-            <div class="border-round-3xl border-1 border-gray-300 flex align-items-center gap-2 cursor-pointer" style="padding: 3px 10px;">
+            <div (click)="menu.toggle($event)" class="border-round-3xl border-1 border-gray-300 flex align-items-center gap-2 cursor-pointer" style="padding: 3px 10px;">
                 <i class="fa-solid fa-bars"></i>
                 <img style="width: 32px; height: 32px" class="border-circle" src="{{user?.image}}" alt="">
             </div>
@@ -32,6 +31,10 @@
             <p-button label="Sign Up" severity="contrast" (click)="showAccountDialog('signIn')"/>
         }
     </div>
+</div>
+
+<div class="card flex justify-center">
+    <p-menu #menu [model]="menuItems" [popup]="true" />
 </div>
 
 <!-- Login Dialog -->
