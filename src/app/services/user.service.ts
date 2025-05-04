@@ -16,4 +16,25 @@ export class UserService {
 
     return this.http.get<boolean>( 'localhost:3300/User/UserCheckByPhone', {params});
   }
+
+  checkUserByEmail(email: string) {
+    let params = new HttpParams();
+    params = params.append('email', email);
+
+    return this.http.get<boolean>( 'localhost:3300/User/UserCheckByEmail', {params});
+  }
+
+  getUserByPhone(phone: string) {
+    let params = new HttpParams();
+    params = params.append('phone', phone);
+
+    return this.http.get<boolean>( 'localhost:3300/User/UserGetByPhone', {params});
+  }
+
+  getUserByEmail(email: string) {
+    let params = new HttpParams();
+    params = params.append('email', email);
+
+    return this.http.get<boolean>( 'localhost:3300/User/UserGetByEmail', {params});
+  }
 }
