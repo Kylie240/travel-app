@@ -10,7 +10,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputOtpModule } from 'primeng/inputotp';
 import { MenuItem } from 'primeng/api';
 import { Menu } from 'primeng/menu';
-
+import { UserService } from '../../../services/user.service';
 @Component({
   selector: 'app-navbar',
   imports: [
@@ -27,14 +27,16 @@ import { Menu } from 'primeng/menu';
     Menu,
   ],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
   isHomepage = false;
+  scrollCheck: boolean = false;;
   items: any[] = [];
   menuItems: MenuItem[] = [];
   visible = false;
   value: any;
+  errorMessage: string;
   showSignUp = false;
   showLogIn = false;
   showOTC = false;
@@ -44,6 +46,18 @@ export class NavbarComponent implements OnInit {
   user: any;
   searchParams = {
     phone: '',
+  }
+
+  constructor(
+    // private userService: UserService,
+  ) {
+    console.log(window.scrollY);
+    
+      if (window.scrollY > 50) {
+        this.scrollCheck = true;
+      } else {
+        this.scrollCheck = false;
+      }
   }
 
 ngOnInit(): void {
@@ -71,17 +85,18 @@ ngOnInit(): void {
     }
 ];
   // let test = document.getElementById
-  this.user ={
-    name: 'Kylie',
-    email: 'olivkylie@gmail.com',
-    phone: '9545945535',
-    image: 'https://media.licdn.com/dms/image/v2/D4E03AQH1o4Avl01RCA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1698873322772?e=2147483647&v=beta&t=4lwjMLSYjyH9c528Y9FQZXn_tqii1bFYpjSJ2v3VOX4',
-    reviews: 3289,
-    rating: 4.59,
-    joined: new Date(),
-    title: 'Solo Travel Enthusiast',
-    about: 'My listings are mainly full of solor travel plans that allow other women of color to travel comfortably and affordbly to places outside of the U.S.',
-  };
+  this.user;
+  // this.user = {
+  //   name: 'Kylie',
+  //   email: 'olivkylie@gmail.com',
+  //   phone: '9545945535',
+  //   image: 'https://media.licdn.com/dms/image/v2/D4E03AQH1o4Avl01RCA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1698873322772?e=2147483647&v=beta&t=4lwjMLSYjyH9c528Y9FQZXn_tqii1bFYpjSJ2v3VOX4',
+  //   reviews: 3289,
+  //   rating: 4.59,
+  //   joined: new Date(),
+  //   title: 'Solo Travel Enthusiast',
+  //   about: 'My listings are mainly full of solor travel plans that allow other women of color to travel comfortably and affordbly to places outside of the U.S.',
+  // };
 }
 
   search(event: AutoCompleteCompleteEvent) {
@@ -102,6 +117,19 @@ getUser() {
     title: 'Solo Travel Enthusiast',
     about: 'My listings are mainly full of solor travel plans that allow other women of color to travel comfortably and affordbly to places outside of the U.S.',
   }
+}
+
+handlePhoneInput(){
+  if (this.searchParams.phone.length < 10) { 
+    this.errorMessage = 'Please enter a valid phone number';
+    return;
+  };
+  // const res = this.userService.checkUserByPhone(this.searchParams.phone).subscribe({
+  //   next: (data: boolean) => {
+  //     this.showLogIn = !!data;
+  //     this.showSignUp = !data;
+  //   }
+  // });
 }
 
 showAccountDialog(dialogType: string) {

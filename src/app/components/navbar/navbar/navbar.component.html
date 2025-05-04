@@ -1,5 +1,5 @@
-<div class="w-full flex justify-content-around align-items-center mt-2" style="height: 80px">
-    <div class="flex align-items-center justify-content-center gap-1">
+<div class="w-full flex justify-content-around align-items-center mt-2 fixed" style="height: 80px">
+    <div class="flex align-items-center justify-content-center cursor-pointer gap-1" routerLink="/">
         <i class="fa-solid fa-compass text-4xl"></i>
         <p class="text-4xl relative font-semibold" style="bottom: 3px;">nomad</p>
     </div>
@@ -16,7 +16,7 @@
         } @else {
             <li> <a routerLink="" routerLinkActive="active">Home</a> </li>
             <li> <a routerLink="/about" routerLinkActive="active">About</a> </li>
-            <li> <a routerLink="/explore" routerLinkActive="active">Listings</a> </li>
+            <li> <a routerLink="/explore" routerLinkActive="active">Explore</a> </li>
             <li> <a routerLink="/contact" routerLinkActive="active">Contact Us</a> </li>
         }
     </ul>
@@ -27,8 +27,8 @@
                 <img style="width: 32px; height: 32px" class="border-circle" src="{{user?.image}}" alt="">
             </div>
         } @else {
-            <p-button severity="contrast" label="Log In" [link]="true" (click)="showAccountDialog('logIn')"/>
-            <p-button label="Sign Up" severity="contrast" (click)="showAccountDialog('signIn')"/>
+            <!-- <p-button severity="contrast" label="Log In" [link]="true" (click)="showAccountDialog('logIn')"/> -->
+            <p-button label="Sign In" severity="contrast" (click)="showAccountDialog('signIn')"/>
         }
     </div>
 </div>
@@ -40,21 +40,24 @@
 <!-- Login Dialog -->
 <p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '25rem' }" (onHide)="closeAccountDialog()" dismissableMask="true">
     <ng-template #header>
-        <div class="w-full justify-content-center">
+        <div class="w-full justify-content-center text-center">
             <p>Log in or sign up</p>
         </div>
     </ng-template>
     @if (!showSignUp && !showLogIn) {
         <ng-template #content>
             <div class="w-full justify-content-center">
-                <span class="text-surface-500 dark:text-surface-400 block text-2xl mb-2">Welcome to Jetty</span>
-                    <p-autocomplete [(ngModel)]="value" [dropdown]="true" [styleClass]="'w-full'" [suggestions]="items" (completeMethod)="search($event)" />
-                    <p-floatlabel variant="in" class="w-full">
-                        <input pInputText id="in_label" style="height: 38px; width: 100%;" [(ngModel)]="searchParams.phone" autocomplete="off" />
-                        <label for="in_label" class="text-sm">Phone number</label>
-                    </p-floatlabel>
-                <p class="text-xs my-1 w-full ml-1">We’ll call or text you to confirm your number. Standard message and data rates apply. <a href="/contact">Privacy Policy</a></p>
-                <p-button [styleClass]="'w-full'" label="Continue" (onClick)="getUser(); showLogIn = true" severity="primary"/>
+                <span class="text-surface-500 dark:text-surface-400 block text-2xl mb-3">Welcome to Jetty</span>
+                <p-autocomplete [(ngModel)]="value" [dropdown]="true" [styleClass]="'w-full'" [suggestions]="items" (completeMethod)="search($event)" />
+                <p-floatlabel variant="in" class="w-full">
+                    <input pInputText id="in_label" style="height: 38px; width: 100%;" [(ngModel)]="searchParams.phone" autocomplete="off" />
+                    <label for="in_label" class="text-sm">Phone number</label>
+                </p-floatlabel>
+                @if (errorMessage) {
+                    <p class="errorMessage">{{errorMessage}}</p>
+                }
+                <p class="text-xs mt-1 mb-2 w-full ml-1">We’ll call or text you to confirm your number. Standard message and data rates apply. <a href="/contact">Privacy Policy</a></p>
+                <p-button [styleClass]="'w-full'" label="Continue" (onClick)="handlePhoneInput(); showLogIn = true" severity="primary"/>
             </div>
         </ng-template>
         

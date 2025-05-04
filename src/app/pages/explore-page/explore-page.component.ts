@@ -1,10 +1,12 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout'
+import { takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-explore-page',
@@ -12,7 +14,10 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './explore-page.component.html',
   styleUrl: './explore-page.component.scss'
 })
-export class ExplorePageComponent {
+export class ExplorePageComponent implements OnDestroy {
+  isSmallDevice: boolean = false;
+  isStandradScreen: boolean = false;
+  isAlive: boolean = true;
   visible: boolean = false;
   listings = [
     {
@@ -162,8 +167,20 @@ export class ExplorePageComponent {
 
   constructor(
     private router: Router,
+    private breakpointObserver: BreakpointObserver,
   )
-  {}
+  {
+    this.breakpointObserver.observe(['max-width: 1000']).pipe(takeWhile(() => this.isAlive)).subscribe((result: BreakpointState) => {
+      this.isSmallDevice = true;
+    });
+    this.breakpointObserver.observe(['max-width: 1400']).pipe(takeWhile(() => this.isAlive)).subscribe((result: BreakpointState) => {
+      this.isStandradScreen = true;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.isAlive = false;
+  }
 
   calculateNightlyPrice(listing: any) {
     return Math.floor(listing.price / listing.days);
