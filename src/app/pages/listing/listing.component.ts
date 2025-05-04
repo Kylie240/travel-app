@@ -10,6 +10,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { RatingPipe } from '../../pipes/ratingpipe';
 import HeroComponent from '../../components/hero/hero.component';
 import ListingHeaderComponent from "../../components/listing-header/listing-header.component";
+import { ListingSubcomponent } from '../../components/listing-subcomponent';
 @Component({
   selector: 'app-listing',
   imports: [
@@ -27,7 +28,8 @@ import ListingHeaderComponent from "../../components/listing-header/listing-head
     NgStyle,
     NgFor,
     HeroComponent,
-    ListingHeaderComponent
+    ListingHeaderComponent,
+    ListingSubcomponent,
 ],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss'

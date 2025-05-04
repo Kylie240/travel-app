@@ -123,55 +123,25 @@
             <p class="text-lg">{{listing.itenerary.caption}}</p>
     
             <div class="mb-6">
-                <p-accordion [multiple]="true" expandIcon="fa-solid fa-circle-dot" collapseIcon="fa-solid fa-circle" [style]="{'width': '100%'}">
+                <p-accordion [multiple]="true" expandIcon="fa-solid fa-circle-dot" collapseIcon="fa-solid fa-circle" iconOnClass="text-white" [style]="{'width': '100%'}">
                     @for (day of listing.itenerary.days; track $index) {
                     <p-accordionTab header="Day: {{day.cities[0]}} - {{day.cities[1]}}">
                         <div class="pl-4">
                             @if(day.photos) {
                                 <img style="width: 100%; height: 400px;" class="border-round-3xl" src="{{day.photos[0]}}" alt="">
                             }
-                            <p class="text-xl">{{day.overview}}</p>
-                            <div class="flex flex-column align-items-start justify-content-start">
-                                @if(day.accomodations) {
-                                    <h2 class="ml-3">Accomodations</h2>
-                                    @for (accomodation of day.accomodations; track $index) {
-                                        <div class="flex flex-column align-items-center cursor-pointer" (click)="handleLink(accomodation.link)">
-                                            <img style="width: 200px; height: 100px;" class="border-round-3xl" src="{{accomodation.photo}}" alt="">
-                                            <p>Hotel Name</p>
-                                            @if(accomodation.rating){
-                                                <p-rating [(ngModel)]="accomodation.rating" stars="5"/>
-                                            }
-                                        </div>
-                                    }
+                            <p #test class="text-xl font-light py-3 overview-text">{{day.overview}}</p>
+                            @if(test.scrollHeight > 96) {
+                                @if(test.clientHeight === 96) {
+                                    <span class="underline cursor-pointer font-medium" (click)="test.classList.add('expanded')">Read more</span>
+                                } @else{
+                                    <span class="underline cursor-pointer font-medium" (click)="test.classList.remove('expanded')">Read less</span>
                                 }
-                            </div>
-                            <div class="flex flex-column align-items-start justify-content-start">
-                                @if(day.activities) {
-                                    <h2 class="ml-3">Activities</h2>
-                                    @for (activity of day.accomodations; track $index) {
-                                        <div class="flex flex-column align-items-center cursor-pointer" (click)="handleLink(activity.link)">
-                                            <img style="width: 200px; height: 100px;" class="border-round-3xl" src="{{activity.photo}}" alt="">
-                                            <p>Activity Name</p>
-                                            @if(activity.rating){
-                                                <p-rating [(ngModel)]="activity.rating" stars="5"/>
-                                            }
-                                        </div>
-                                    }
-                                }
-                            </div>
-                            <div class="flex flex-column align-items-start justify-content-start">
-                                @if(day.restaurants) {
-                                    <h2 class="ml-3">Restaurants</h2>
-                                    @for (restaurant of day.accomodations; track $index) {
-                                        <div class="flex flex-column align-items-center cursor-pointer" (click)="handleLink(restaurant.link)">
-                                            <img style="width: 200px; height: 100px;" class="border-round-3xl" src="{{restaurant.photo}}" alt="">
-                                            <p>Restaurant Name</p>
-                                            @if(restaurant.rating){
-                                                <p-rating [(ngModel)]="restaurant.rating" stars="5"/>
-                                            }
-                                        </div>
-                                    }
-                                }
+                            }
+                            <div class="mt-4 flex gap-3">
+                                <app-listing-subcomponent [listArray]="listing.accomodations" [singularHeader]="'Accomodation'"></app-listing-subcomponent>
+                                <app-listing-subcomponent [listArray]="listing.activities" [pluralHeader]="'Activities'" [singularHeader]="'Activity'"></app-listing-subcomponent>
+                                <app-listing-subcomponent [listArray]="listing.restaurants" [pluralHeader]="'Restaurants'" [singularHeader]="'Restaurant'"></app-listing-subcomponent>
                             </div>
                         </div>
                     </p-accordionTab>

@@ -1,0 +1,10 @@
+.overview-text{
+    max-height: 96px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    position: relative;
+}
+
+.overview-text.expanded {
+    max-height: none;
+  }
